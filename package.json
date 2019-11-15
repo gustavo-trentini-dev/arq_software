@@ -1,0 +1,24 @@
+{
+  "name": "arq_software",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.1",
+    "electron-prebuilt": "^1.4.13"
+  },
+  "dependencies": {
+    "app": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "mariadb": "^2.1.3",
+    "pg": "^7.12.1"
+  }
+}
