@@ -3,7 +3,7 @@ $ = require('jquery')
 var ipc = electron.ipcRenderer;
 var user = null;
 
-const logout = document.getElementById('logout');
+const logout = document.getElementById('back_login');
 const inscribe = document.getElementById('inscribe');
 
 $(document).ready(function () {
