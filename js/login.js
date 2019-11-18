@@ -31,30 +31,33 @@ validate.addEventListener('click', function(){
 })
 
 email.addEventListener('click', function(){
-    sendEMail();
+    enviarEmail();
 });
 
-function sendEMail() {
-    var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'gustavo.trentini@universo.univates.br',
-        pass: '456z2B*K'
-    }
+function enviarEmail() {
+    nodemailer.createTestAccount((err, account) => {
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.ethereal.email',
+            port: 587,
+            auth: {
+                user: 'rhea.trantow95@ethereal.email',
+                pass: 'q91Jz5n3uc1sxXbhWz'
+            }
+        });
     });
 
     var mailOptions = {
-        from: 'gustavo.trentini@universo.univates.br',
-        to: 'gtrentini@outlook.com',
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
+        from: '"Teste" <rhea.trantow95@ethereal.email>',
+        to: 'gustavo.trentini@universo.univates.br',
+        subject: 'Testing Nodemailer',
+        text: 'Hi, this is a Nodemailer test email ;) ', 
+        html: '<b> Hi </b><br> this is a Nodemailer test email'
     };
 
-    transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-        console.log(error);
-    } else {
-        console.log('Email sent: ' + info.response);
-    }
+    transport.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
     });
 }
