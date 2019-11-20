@@ -8,6 +8,7 @@ const login = document.getElementById('login');
 const certificates = document.getElementById('certificates');
 const validate = document.getElementById('validate');
 const email = document.getElementById('email');
+const events = document.getElementById('events');
 
 login.addEventListener('click', function(){
     data = {
@@ -32,6 +33,10 @@ validate.addEventListener('click', function(){
 
 email.addEventListener('click', function(){
     enviarEmail();
+});
+
+events.addEventListener('click', function(){
+    ipc.send('call_events');
 });
 
 function enviarEmail() {

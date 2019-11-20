@@ -16,6 +16,10 @@ app.on('ready', function(){
     mainWindow.loadURL('file://'+ __dirname +'/views/login.html')
     mainWindow.openDevTools()
 
+    ipc.on('online-status-changed', (event, status) => {
+        console.log(status);
+    })
+
     // ABRE CADASTRO DE USUÁRIO
     ipc.on('register_call', function(){
         mainWindow.loadURL('file://' + __dirname + '/views/register.html')
@@ -36,6 +40,10 @@ app.on('ready', function(){
     // ABRE LISTA EVENTOS ONDE O USUÁRIO ESTÁ INSCRITO
     ipc.on('inscribes', function(){
         mainWindow.loadURL('file://' + __dirname + '/views/inscricao.html')
+    });
+
+    ipc.on('call_events', function(event, arg){
+        mainWindow.loadURL('file://' + __dirname + '/views/events.html')
     });
 
     // ABRE LISTA DE INSCRITOS NO EVENTO
@@ -223,6 +231,20 @@ app.on('ready', function(){
             }
         }, function(err, res, body){
             event.sender.send('validator', {body: JSON.parse(body)});
+        })
+    })
+
+    // CRIAR INSCRIÇÃO RÁPIDA
+    ipc.on('quick_inscribe', function(event, arg){
+        request({
+            uri: 'http://localhost:3001/quick_inscribe',
+            method: 'POST',
+            body: JSON.stringify(arg),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }, function(err, res, body){
+            event.sender.send('quick_return', body);
         })
     })
 })

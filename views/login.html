@@ -10,10 +10,22 @@
             <input id="password" type="password"/>
         </form>
         <button id="login">Login</button>
+        <button id="events">Eventos</button>
         <button id="register_call">Register</button>
         <button id="certificates">Certificados</button>
         <button id="validate">Validar Certificado</button>
         <button id="email">Email</button>
         <script>require('../js/login.js')</script>
+        <script>
+            const { ipcRenderer } = require('electron')
+            const updateOnlineStatus = () => {
+              ipcRenderer.send('online-status-changed', navigator.onLine ? 'online' : 'offline')
+            }
+          
+            window.addEventListener('online',  updateOnlineStatus)
+            window.addEventListener('offline',  updateOnlineStatus)
+          
+            updateOnlineStatus()
+          </script>
     </body>
 </html>
